@@ -1,0 +1,24 @@
+/* 全体のコードブロックスタイル */
+pre {
+    background-color: #d2b48c; /* さらに薄い茶色の背景 */
+    color: #333333; /* 黒色の文字色 */
+    padding: 15px; /* コードブロックの内側の余白 */
+    border-radius: 8px; /* 角丸の設定 */
+    font-size: 16px; /* フォントサイズの設定 */
+    line-height: 1.5; /* 行の高さの設定 */
+    overflow-x: auto; /* 横スクロールを許可 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* 軽いシャドウを追加 */
+    margin-bottom: 1.5em; /* 下に余白を追加 */
+    font-family: 'Courier New', Courier, monospace; /* 等幅フォントを使用 */
+    white-space: pre-wrap; /* 長い行を折り返す */
+}
+
+/* コード内のスタイル */
+code {
+    background-color: #d2b48c; /* さらに薄い茶色の背景 */
+    color: #333333; /* 黒色の文字色 */
+    padding: 4px; /* 内側の余白 */
+    border-radius: 4px; /* 角丸の設定 */
+    font-family: 'Courier New', Courier, monospace; /* 等幅フォントを使用 */
+    font-size: 16px; /* フォントサイズの設定 */
+}

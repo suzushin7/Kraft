@@ -1,0 +1,31 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tag-search {
+  width: 260px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.search-button {
+  background-color: #0056a3; /* 少し暗くした背景色 */
+  color: #fefefe; /* 白色の文字色でコントラストを強調 */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+  background-color: #004080; /* ホバー時にさらに暗くする */
+}
