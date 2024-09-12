@@ -44,7 +44,8 @@ class RSSGenerator(private val domain: String, private val siteName: String) {
             append("</rss>")
         }
 
-        File("${outputDir}/rss.xml").writeText(rssContent)
-        println("RSSフィードの生成が完了しました。")
+        val rss = File("${outputDir}/rss.xml")
+        rss.writeText(rssContent)
+        println("RSS: ${rss.path}の作成が完了しました。")
     }
 }

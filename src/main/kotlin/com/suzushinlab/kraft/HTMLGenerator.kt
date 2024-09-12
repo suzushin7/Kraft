@@ -145,10 +145,29 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
                 article.metadata.slug
             }
 
-            // ファイルに書き込み
-            File("${outputDir}${path}").apply {
+            // 出力先のファイル
+            val outputFile = File("${outputDir}${path}")
+
+            // ファイルが存在する場合は、ハッシュ値を比較して更新が必要か判定
+            if (outputFile.exists()) {
+                val outputFileContent = outputFile.readText()
+                // 文字列の長さを比較。同じ場合はハッシュ値を比較
+                if (outputFileContent.length == htmlContentWithToc.length) {
+                    // ハッシュ値を比較
+                    val prevHash = outputFileContent.hashCode()
+                    val currentHash = htmlContentWithToc.hashCode()
+                    if (currentHash == prevHash) {
+                        println("HTML: ${outputFile.path}は変更がないため、上書きしません。")
+                        continue
+                    }
+                }
+            }
+
+            // 出力先のファイルが存在しないか、更新が必要な場合はファイルを書き込む
+            outputFile.apply {
                 parentFile.mkdirs()
                 writeText(htmlContentWithToc)
+                println("HTML: ${outputFile.path}を作成しました。")
             }
         }
     }

@@ -3,6 +3,9 @@ package com.suzushinlab.kraft
 import freemarker.template.Configuration
 import freemarker.template.TemplateExceptionHandler
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
 
 /**
  * Kraftクラス
@@ -20,6 +23,19 @@ class Kraft(
     private val rssGenerator = RSSGenerator(domain, siteName)
     private val pingManager = PingManager()
 
+    fun cleanBuild(isPublicBuild: Boolean) {
+        val dirName = if(isPublicBuild) "_output" else "output"
+        val dir = File(dirName).toPath()
+        if (Files.exists(dir)) {
+            // 全てのファイルを削除
+            Files.walk(dir)
+                .sorted(Comparator.reverseOrder())
+                .map(Path::toFile)
+                .forEach { it.delete() }
+        }
+        build(isPublicBuild)
+    }
+
     fun build(isPublicBuild: Boolean) {
         var contentDir = "content"
         var outputDir = "output"
@@ -30,8 +46,6 @@ class Kraft(
             outputDir = "_output"
             templateDir = "_templates"
         }
-
-        File(outputDir).deleteRecursively()
 
         val cfg = Configuration(Configuration.VERSION_2_3_31).apply {
             defaultEncoding = "UTF-8"
@@ -46,7 +60,7 @@ class Kraft(
         sitemapGenerator.generate(articles, outputDir)
         rssGenerator.generate(articles, outputDir)
 
-        println("サイトの生成が完了しました。")
+        println("FINISH: サイトの生成が完了しました。")
     }
 
     fun ping(file: String) {

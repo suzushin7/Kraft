@@ -22,7 +22,19 @@ class SitemapGenerator(private val domain: String) {
             append("</urlset>")
         }
 
-        File("${outputDir}/sitemap.xml").writeText(sitemapContent)
-        println("サイトマップの生成が完了しました。")
+        val sitemap = File("${outputDir}/sitemap.xml")
+        if(!sitemap.exists()) {
+            sitemap.writeText(sitemapContent)
+            println("SITEMAP: ${sitemap.path}の生成が完了しました。")
+        } else {
+            val oldHash = Util.getHash(sitemap)
+            val newHash = Util.getHash(sitemapContent)
+            if (oldHash != newHash) {
+                sitemap.writeText(sitemapContent)
+                println("SITEMAP: ${sitemap.path}の更新が完了しました。")
+            } else {
+                println("SITEMAP: ${sitemap.path}は更新の必要がありません。")
+            }
+        }
     }
 }
