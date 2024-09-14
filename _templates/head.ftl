@@ -15,4 +15,10 @@
 <link rel="apple-touch-icon" sizes="128x128" href="/images/favicon-128x128-min.jpg">
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <link rel="alternate" type="application/rss+xml" title="${siteName}" href="/rss.xml">
-<link rel="stylesheet" href="/css/styles-min.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/code.css">
+<link rel="stylesheet" href="/css/cta.css">
+<link rel="stylesheet" href="/css/ranking.css">
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/share.css">
+<link rel="stylesheet" href="/css/toc.css">

@@ -1,0 +1,451 @@
+body {
+    background-color: #f4e7d3; /* 古紙風の明るい茶色の背景色 */
+    color: #4b2e18; /* 濃い茶色のテキストカラー */
+    font-family: 'Bookman Old Style', 'Times New Roman', 'Georgia', 'Palatino Linotype',  'Garamond', serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.container, .content {
+    background-color: #e7d3b0; /* さらに濃い茶色の背景色で記事部分を強調 */
+    color: #4b2e18; /* 濃い茶色のテキストカラー */
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 軽い影で立体感 */
+    margin-bottom: 1.5em;
+}
+
+.breadcrumb {
+    background-color: #e7d3b0; /* 記事部分と同じ背景色 */
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 軽い影で立体感 */
+    margin-bottom: 20px;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.breadcrumb li {
+    margin-right: 10px;
+}
+
+.breadcrumb li::after {
+    content: "›"; /* パンくずリストの区切り文字 */
+    margin-left: 10px;
+    color: #4b2e18; /* 区切り文字の色 */
+}
+
+.breadcrumb li:last-child::after {
+    content: ""; /* 最後の要素には区切り文字を表示しない */
+}
+
+.breadcrumb li a {
+    text-decoration: underline;
+    color: #1a0dab; /* リンク色 */
+    transition: color 0.3s ease;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.breadcrumb li a:hover {
+    color: #0f006e; /* ホバー時にリンク色を少し濃く */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .breadcrumb {
+        font-size: 16px;
+        padding: 8px 10px;
+    }
+
+    .breadcrumb li {
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .breadcrumb {
+        font-size: 16px;
+        padding: 6px 8px;
+    }
+
+    .breadcrumb li {
+        margin-right: 6px;
+    }
+}
+
+/* フッターの背景色とスタイル */
+footer {
+    background-color: #e7d3b0; /* 記事部分と同じ背景色 */
+    color: #4b2e18;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 軽い影で立体感 */
+    margin-bottom: 20px;
+}
+
+/* テキストとリンクのカラー */
+.breadcrumb a, .cta a, footer a {
+    color: #1a0dab; /* リンク色 */
+    text-decoration: underline;
+}
+
+.breadcrumb a:hover, .cta a:hover, footer a:hover {
+    color: #0f006e; /* ホバー時にリンク色を少し濃く */
+}
+
+/* ヘッダースタイル */
+header {
+    text-align: center;
+    border-bottom: 2px solid #b8860b; /* 濃い金色のボーダーでクラシック感を追加 */
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* テキストスタイル */
+h1, h2, h3, h4 {
+    color: #3e2712; /* 濃い茶色のタイトル */
+    font-weight: bold;
+    margin-bottom: 1em;
+    padding: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    border-bottom: 3px solid #b8860b;
+    margin-bottom: 1.5em;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 1.5em;
+    border-left: 8px solid #b8860b;
+}
+
+h4 {
+    font-size: 20px;
+    margin-bottom: 1.5em;
+}
+
+/* リンクスタイル */
+a {
+    color: #1a0dab; /* 青色リンク */
+    text-decoration: underline; /* 下線あり */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0f006e; /* ホバー時に少し暗く */
+}
+
+img {
+    max-width: 100%;
+    height: auto; /* アスペクト比を保持して高さを自動調整 */
+    display: block; /* 画像周りに余白ができないようにする */
+    margin: 0 auto 30px; /* 画像の下に余白を追加し、中央揃えに */
+    border-radius: 8px; /* 角を少し丸くして柔らかい印象に */
+    border: 1px solid #3e2712; /* 画像に細い枠線を追加 */
+    padding: 5px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+    img {
+        padding: 10px; /* 小さい画面でのパディングを調整 */
+        max-width: 90%; /* 画像の幅を90%に */
+    }
+}
+
+/* コンテンツスタイル */
+.content {
+    line-height: 1.75;
+}
+
+.content p {
+    margin-top: 1.75em;
+    margin-bottom: 1.75em;
+    font-size: 16px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    footer {
+        font-size: 16px;
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    footer {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+}
+
+/* グローバルメニューのスタイル */
+.global-menu {
+    background-color: #4b2e18; /* 濃い茶色の背景 */
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.global-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* 小さな画面でメニューを折り返す */
+}
+
+.global-menu ul li {
+    margin: 0 15px;
+}
+
+.global-menu ul li a {
+    color: #fdf7e2; /* メニューのテキストを明るいベージュに */
+    text-decoration: none;
+    font-size: 20px;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+}
+
+.global-menu ul li a:hover {
+    background-color: #d1bfa5; /* ホバー時に少し明るい茶色に */
+    color: #4b2e18; /* ホバー時のテキストカラー */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .global-menu ul li {
+        margin: 10px 5px;
+    }
+
+    .global-menu ul li a {
+        font-size: 20px;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .global-menu ul li {
+        margin: 8px 3px;
+    }
+
+    .global-menu ul li a {
+        font-size: 18px;
+        padding: 6px 8px;
+    }
+}
+
+/* TOPに戻るボタンのスタイル */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4b2e18; /* ボタンの背景色 */
+    color: #fdf7e2; /* ボタンのテキスト色 */
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 50px; /* 丸みを帯びたボタン */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ボタンの影 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 1000; /* 他の要素の上に表示 */
+}
+
+.back-to-top:hover {
+    background-color: #d1bfa5; /* ホバー時の背景色 */
+    color: #4b2e18; /* ホバー時のテキスト色 */
+}
+
+/* メディアクエリ - 小さな画面向けの調整 */
+@media (max-width: 768px) {
+    .back-to-top {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
+
+/* SNSリンクのベーススタイル */
+.sns-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* 小さな画面でリンクを折り返す */
+}
+
+.sns-links a {
+    display: inline-block;
+    color: #ffffff; /* テキストは白 */
+    text-decoration: none;
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.twitter-link {
+    background-color: #1A73E8; /* 暗めのX (Twitter) ブルー */
+}
+
+.tiktok-link {
+    background-color: #1C1C1C; /* 暗めのTikTokブラック */
+}
+
+.instagram-link {
+    background: linear-gradient(145deg, #405DE6, #833AB4, #C13584, #E1306C, #F56040, #FFDC80); /* Instagramのグラデーションを強調 */
+}
+
+.youtube-link {
+    background-color: #CC0000; /* 濃いめのYouTubeレッド */
+}
+
+.github-link {
+    background-color: #24292E; /* GitHubのダークグレー */
+}
+
+/* ホバー効果 */
+.sns-links a:hover {
+    transform: translateY(-5px); /* ホバー時に少し持ち上げる */
+    filter: brightness(1.2); /* 明るさを増す */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .sns-links {
+        gap: 20px;
+    }
+
+    .sns-links a {
+        font-size: 26px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sns-links {
+        gap: 20px;
+    }
+
+    .sns-links a {
+        font-size: 24px;
+        padding: 16px;
+    }
+}
+
+/* ブログ名を栞のように表示 */
+.bookmark-logo {
+    margin: 20px 40px 20px;
+    background: linear-gradient(145deg, #4b2e18, #2d1a0d); /* グラデーションで奥行き感を演出 */
+    color: #fdf7e2; /* テキストは明るいベージュ色 */
+    padding: 10px 20px;
+    border: 3px solid #b8860b; /* 濃い金色のボーダーでゴージャスに */
+    border-radius: 0 0 15px 15px; /* より丸みを帯びた栞の形 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.25); /* 内外の影で立体感 */
+    font-size: 22px;
+    text-align: center;
+    text-decoration: none;
+    z-index: 1000; /* 他の要素より前に表示 */
+    transform: rotate(-1deg); /* 少し傾けて遊び心を追加 */
+}
+
+.bookmark-logo a {
+    color: #fdf7e2; /* テキストカラーを明るいベージュに統一 */
+    text-decoration: none; /* 下線をなくす */
+}
+
+.bookmark-logo a:hover {
+    color: #ffd700; /* ホバー時に明るい金色に */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .bookmark-logo {
+        font-size: 20px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bookmark-logo {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+}
+
+iframe {
+    max-width: 100%; /* 幅を100%に */
+    border: 1px solid #999999; /* 枠線を追加 */
+    border-radius: 8px; /* 角を少し丸くして柔らかい印象に */
+    margin: 0 auto 30px; /* 画像の下に余白を追加し、中央揃えに */
+    display: block; /* 画像周りに余白ができないようにする */
+}
+
+.tag {
+    background-color: #4b2e18; /* 濃い茶色の背景 */
+    color: #fdf7e2;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px;
+    display: inline-block;
+}
+

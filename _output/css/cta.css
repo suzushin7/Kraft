@@ -1,0 +1,54 @@
+/* CTA (Call to Action) の背景色とスタイル */
+.cta {
+    background-color: #e7d3b0; /* 記事部分と同じ背景色 */
+    color: #4b2e18;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 軽い影で立体感 */
+    margin-bottom: 20px;
+}
+
+.cta h2 {
+    font-size: 24px;
+    color: #3e2712; /* 濃い茶色のタイトル */
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.cta p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+/* メディアクエリでレスポンシブ対応 */
+@media (max-width: 768px) {
+    .cta {
+        padding: 15px;
+    }
+
+    .cta h2 {
+        font-size: 20px;
+    }
+
+    .cta p {
+        font-size: 16px;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta {
+        padding: 10px;
+    }
+
+    .cta h2 {
+        font-size: 20px;
+    }
+
+    .cta p {
+        font-size: 16px;
+    }
+}

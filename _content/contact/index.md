@@ -4,7 +4,7 @@ tags:
   - ページ
   - お問い合わせ
 publish_date: "2024-09-06T18:00:00+09:00"
-update_date: "2024-09-06T18:00:00+09:00"
+update_date: "2024-09-14T11:55:00+09:00"
 slug: /contact/
 thumbnail: /images/home-min.jpg
 description: お問い合わせのページです。何かご質問やご意見があれば、お気軽にお問い合わせください。仕事の依頼やプロジェクトの相談も受け付けています。
