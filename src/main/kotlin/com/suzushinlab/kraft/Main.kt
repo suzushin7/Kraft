@@ -10,7 +10,7 @@ const val isCleanBuild = false
 
 // このプロジェクトの公開調整用のフラグ
 // 基本的に、あなたが使う時はtrueに設定してください
-const val isPublicBuild = true
+const val isPublicBuild = false
 
 // Kraftクラスのインスタンスを生成し、ビルドまたはPINGリクエストを送信する
 fun main() {

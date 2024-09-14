@@ -4,6 +4,8 @@ import com.vladsch.flexmark.html.HtmlRenderer
 import com.vladsch.flexmark.parser.Parser
 import freemarker.template.Configuration
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 import java.io.StringWriter
@@ -165,7 +167,9 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
 
             // 出力先のファイルが存在しないか、更新が必要な場合はファイルを書き込む
             outputFile.apply {
-                parentFile.mkdirs()
+                if(!parentFile.exists()) {
+                    parentFile.mkdirs()
+                }
                 writeText(htmlContentWithToc)
                 println("HTML: ${outputFile.path}を作成しました。")
             }
@@ -252,10 +256,27 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
 
             // 目次を追加する
             val htmlContentWithToc = generateToc(output.toString())
+            val outputFile = File("${outputDir}/tag/${slug}/index.html")
 
-            File("${outputDir}/tag/${slug}/index.html").apply {
+            // ファイルが存在する場合は、ハッシュ値を比較して更新が必要か判定
+            if (outputFile.exists()) {
+                val outputFileContent = outputFile.readText()
+                // 文字列の長さを比較。同じ場合はハッシュ値を比較
+                if (outputFileContent.length == htmlContentWithToc.length) {
+                    // ハッシュ値を比較
+                    val prevHash = Util.getHash(outputFileContent)
+                    val currentHash = Util.getHash(htmlContentWithToc)
+                    if (currentHash == prevHash) {
+                        println("HTML: ${outputFile.path}は変更がないため、上書きしません。")
+                        return@forEach
+                    }
+                }
+            }
+            // 出力先のファイルが存在しないか、更新が必要な場合はファイルを書き込む
+            outputFile.apply {
                 parentFile.mkdirs()
                 writeText(htmlContentWithToc)
+                println("HTML: ${outputFile.path}を作成しました。")
             }
         }
     }

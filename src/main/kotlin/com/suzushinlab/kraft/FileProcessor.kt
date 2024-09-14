@@ -10,22 +10,6 @@ import kotlin.io.path.pathString
  * FileProcessorクラス
  */
 class FileProcessor {
-    private fun minify(content: String, isCss: Boolean): String {
-        return if (isCss) {
-            content.replace("/\\*.*?\\*/".toRegex(), "")  // コメント削除
-                .replace("\\s*(?=[{};:,])".toRegex(), "")  // { } ; : , の前のスペース削除
-                .replace("(?<=[{};:,])\\s+".toRegex(), "")  // { } ; : , の後のスペース削除
-                .replace("\\s+([>+~])\\s+".toRegex(), "$1")  // > + ~ の周りのスペース削除
-                .replace("\\s+".toRegex(), " ")  // 余分なスペースを1つに縮小
-                .replace("[\\n\\r]".toRegex(), "")  // 改行削除
-                .trim()
-        } else {
-            content.replace("//.*".toRegex(), "")
-                .replace("/\\*.*?\\*/".toRegex(), "")
-                .replace("\\s+".toRegex(), " ").trim()
-        }
-    }
-
     private fun compressImage(inputPath: Path, outputDir: Path) {
         val image = ImageIO.read(inputPath.toFile())
         val outputFile = outputDir.resolve(inputPath.fileName.toString().replace(".", "-min."))
@@ -76,75 +60,48 @@ class FileProcessor {
 
     private fun processCSSFiles(inputDir: String, outputDir: String) {
         processFiles(Paths.get(inputDir), Paths.get(outputDir), listOf(".css")) { file, outputDir ->
-            val outputFileName = outputDir.resolve(file.fileName.toString().replace(".css", "-min.css"))
+            val outputFileName = outputDir.resolve(file.fileName.toString())
             // ファイルが存在しない場合は作成する
             if(!Files.exists(outputFileName)) {
                 if(!Files.exists(outputFileName.parent)) {
                     Files.createDirectories(outputFileName.parent)
                 }
-                Files.writeString(outputFileName, minify(Files.readString(file), true))
+                Files.copy(file, outputFileName, StandardCopyOption.REPLACE_EXISTING)
                 println("CSS: ${outputFileName.pathString}を作成しました。")
             } else {
                 // ファイルが存在する場合はハッシュ値を比較、異なる場合はファイルを上書きする
-                val newOutputContent = minify(Files.readString(file), true)
+                val newOutputContent = Files.readString(file)
                 val oldOutputContent = Files.readString(outputFileName)
                 val newHash = Util.getHash(newOutputContent)
                 val oldHash = Util.getHash(oldOutputContent)
                 if (newHash == oldHash) {
                     println("CSS: ${outputFileName.pathString}は変更がないため、上書きしません。")
                 } else {
-                    Files.writeString(outputFileName, newOutputContent)
+                    Files.copy(file, outputFileName, StandardCopyOption.REPLACE_EXISTING)
                     println("CSS: ${outputFileName.pathString}を更新しました。")
                 }
             }
-        }
-        // outputDirにある全てのminify済みのCSSを結合して1つのファイルにする
-        // ファイル名はstyles-min.cssとする
-        val output = File(outputDir)
-        val outputFileName = File("$outputDir/styles-min.css")
-
-        // ファイルが存在する場合はハッシュ値を比較、異なる場合はファイルを上書きする
-        if (outputFileName.exists()) {
-            val newOutputContent = output.walk().filter { it.isFile && it.extension == "css" && !it.name.equals(outputFileName.name) }.toList()
-                .map { Files.readString(it.toPath()).trim() }
-                .joinToString("\n") { it }
-            val oldOutputContent = Files.readString(outputFileName.toPath())
-            val newHash = Util.getHash(newOutputContent)
-            val oldHash = Util.getHash(oldOutputContent)
-            if (newHash == oldHash) {
-                println("CSS: ${outputFileName.path}は変更がないため、上書きしません。")
-            } else {
-                Files.writeString(outputFileName.toPath(), newOutputContent)
-                println("CSS: ${outputFileName.path}を更新しました。")
-            }
-        } else {
-            // ファイルが存在しない場合は作成する
-            val newOutputContent = output.walk().filter { it.isFile && it.extension == "css" && !it.name.equals(outputFileName.name) }.toList()
-                .map { Files.readString(it.toPath()) }
-                .joinToString("\n") { it }
-            Files.writeString(outputFileName.toPath(), newOutputContent)
-            println("CSS: ${outputFileName.path}を作成しました。")
         }
     }
 
     private fun processJSFiles(inputDir: String, outputDir: String) {
         processFiles(Paths.get(inputDir), Paths.get(outputDir), listOf(".js")) { file, outputDir ->
-            val outputFileName = outputDir.resolve(file.fileName.toString().replace(".js", "-min.js"))
+            val outputFileName = outputDir.resolve(file.fileName.toString())
             // ファイルが存在しない場合は作成する。
             // ファイルが存在する場合はハッシュ値を比較、異なる場合はファイルを上書きする
             if(!Files.exists(outputFileName)) {
                 if(!Files.exists(outputFileName.parent)) {
                     Files.createDirectories(outputFileName.parent)
                 }
-                Files.writeString(outputFileName, minify(Files.readString(file), false))
+                Files.copy(file, outputFileName, StandardCopyOption.REPLACE_EXISTING)
                 println("JS: ${outputFileName.pathString}を作成しました。")
             } else {
-                val newOutputContent = minify(Files.readString(file), false)
+                val newOutputContent = Files.readString(file)
                 val oldOutputContent = Files.readString(outputFileName)
-                if (newOutputContent.hashCode() == oldOutputContent.hashCode()) {
+                if (Util.getHash(newOutputContent) == Util.getHash(oldOutputContent)) {
                     println("JS: ${outputFileName.pathString}は変更がないため、上書きしません。")
                 } else {
-                    Files.writeString(outputFileName, newOutputContent)
+                    Files.copy(file, outputFileName, StandardCopyOption.REPLACE_EXISTING)
                     println("JS: ${outputFileName.pathString}を更新しました。")
                 }
             }
