@@ -96,18 +96,23 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
             // 目次を追加する
             var htmlContentWithToc = generateToc(output.toString())
 
-            // {{ latest_posts }}を置換
-            // 最新記事15件を取得してリンクを生成
-            if(htmlContentWithToc.contains("{{ latest_posts }}")) {
-                val latestArticles = allArticles.take(15)
-                val latestPosts = buildString {
-                    append("<div class=\"latest-posts\">\n<ul>\n")
+            // {{ latest_posts n }}を置換
+            // 最新記事n件を取得して表示
+            val latestPostsRegex = """\{\{\s*latest_posts\s+(\d+)\s*}}""".toRegex()
+            val latestPostsMatch = latestPostsRegex.find(htmlContentWithToc)
+            if (latestPostsMatch != null) {
+                val n = latestPostsMatch.groupValues[1].toInt()
+                val latestArticles = allArticles.take(n)
+                val latestPostsDiv = buildString {
+                    append("<div class=\"latest-posts\">\n")
+                    append("<ul>\n")
                     latestArticles.forEach { article ->
                         append("<li><a href=\"${article.metadata.slug}\">${article.metadata.title}</a></li>\n")
                     }
-                    append("</ul>\n</div>\n")
+                    append("</ul>\n")
+                    append("</div>\n")
                 }
-                htmlContentWithToc = htmlContentWithToc.replace("<p>{{ latest_posts }}</p>", latestPosts)
+                htmlContentWithToc = htmlContentWithToc.replace(latestPostsMatch.value, latestPostsDiv)
             }
 
             // {{ tags }}を置換
