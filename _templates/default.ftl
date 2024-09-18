@@ -44,6 +44,10 @@
             </#if>
           </header>
 
+          <div class="ad-description">
+            <p>※記事によっては、本文に広告のリンクが含まれることがあります。</p>
+          </div>
+
           <div class="content">
             ${content}
 
@@ -51,6 +55,8 @@
 
             <#include "share.ftl">
 
+            <div class="prev"></div>
+            <div class="next"></div>
           </div>
 
           <#include "profile.ftl">
@@ -59,6 +65,9 @@
 
           <a href="#top" class="back-to-top">TOPに戻る</a>
         </article>
+
+        <#include "counter.ftl">
+
     </main>
 
     <#include "footer.ftl">

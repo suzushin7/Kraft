@@ -56,6 +56,9 @@
 
         <a href="#top" class="back-to-top">TOPに戻る</a>
       </article>
+
+      <#include "counter.ftl">
+
     </main>
 
     <#include "footer.ftl">

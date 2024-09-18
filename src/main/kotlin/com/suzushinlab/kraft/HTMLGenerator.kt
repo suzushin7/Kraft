@@ -4,7 +4,6 @@ import com.vladsch.flexmark.html.HtmlRenderer
 import com.vladsch.flexmark.parser.Parser
 import freemarker.template.Configuration
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.yaml.snakeyaml.Yaml
 import java.io.File
@@ -67,7 +66,7 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
 
         for (article in articles) {
             val template = cfg.getTemplate(article.metadata.template + ".ftl")
-            val fullTitle = "${article.metadata.title} | ${siteName}"
+            val fullTitle = "${article.metadata.title} | $siteName"
             val shareMessage = URLEncoder.encode("記事がシェアされました！ぜひ読んでみてね。\n\n${fullTitle}", "UTF-8")
             val dataModel = mapOf(
                 "siteName" to siteName,
@@ -170,6 +169,34 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
                 }
             }
 
+            // 前後の記事へのリンクを作成
+            val prevArticle = allArticles.getOrNull(allArticles.indexOf(article) + 1)
+            val nextArticle = allArticles.getOrNull(allArticles.indexOf(article) - 1)
+            val prevLink = prevArticle?.metadata?.slug
+            val nextLink = nextArticle?.metadata?.slug
+
+            // 前後の記事へのリンクを追加
+            val document = Jsoup.parse(htmlContentWithToc)
+            if(prevLink != null) {
+                val prevLinkElement = Element("a")
+                    .attr("href", prevLink)
+                    .text(prevArticle.metadata.title)
+                val prevLinkParagraph = Element("p")
+                prevLinkParagraph.text("Previous: ")
+                prevLinkParagraph.appendChild(prevLinkElement)
+                document.select("div.prev").first()?.appendChild(prevLinkParagraph)
+            }
+            if(nextLink != null) {
+                val nextLinkElement = Element("a")
+                    .attr("href", nextLink)
+                    .text(nextArticle.metadata.title)
+                val nextLinkParagraph = Element("p")
+                nextLinkParagraph.text("Next: ")
+                nextLinkParagraph.appendChild(nextLinkElement)
+                document.select("div.next").first()?.appendChild(nextLinkParagraph)
+            }
+            htmlContentWithToc = document.html()
+
             // 出力先のファイルが存在しないか、更新が必要な場合はファイルを書き込む
             outputFile.apply {
                 if(!parentFile.exists()) {
@@ -237,7 +264,7 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
             articles.sortedByDescending { article -> article.metadata.publishDate }
             val slug = tag.replace(" ", "-").lowercase()
             val template = cfg.getTemplate("tag.ftl")
-            val fullTitle = "Tag: $tag | ${siteName}"
+            val fullTitle = "Tag: $tag | $siteName"
             val shareMessage = URLEncoder.encode("記事がシェアされました！ぜひ読んでみてね。\n\n${fullTitle}\n", "UTF-8")
             val dataModel = mapOf(
                 "siteName" to siteName,
@@ -279,7 +306,9 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
             }
             // 出力先のファイルが存在しないか、更新が必要な場合はファイルを書き込む
             outputFile.apply {
-                parentFile.mkdirs()
+                if(!parentFile.exists()) {
+                    parentFile.mkdirs()
+                }
                 writeText(htmlContentWithToc)
                 println("HTML: ${outputFile.path}を作成しました。")
             }

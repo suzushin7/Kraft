@@ -116,11 +116,39 @@ class FileProcessor {
         processJSFiles("$inputDir/js", "$outputDir/js")
         processCSSFiles("$inputDir/css", "$outputDir/css")
         processImageFiles("$inputDir/images", "$outputDir/images")
+        copyPHPFiles("$inputDir/php", "$outputDir/php")
 
         val textFiles = listOf("$inputDir/.htaccess", "$inputDir/robots.txt", "$inputDir/ads.txt")
         textFiles.forEach {
             if(File(it).exists()) {
                 Files.copy(File(it).toPath(), File("$outputDir/${File(it).name}").toPath(), StandardCopyOption.REPLACE_EXISTING)
+            }
+        }
+    }
+
+    // PHPフォルダ内のファイルをコピーする
+    fun copyPHPFiles(inputDir: String, outputDir: String) {
+        processFiles(Paths.get(inputDir), Paths.get(outputDir), listOf(".php")) { file, outputDir ->
+            val outputFileName = outputDir.resolve(file.fileName.toString())
+            // ファイルが存在しない場合は作成する
+            if(!Files.exists(outputFileName)) {
+                if(!Files.exists(outputFileName.parent)) {
+                    Files.createDirectories(outputFileName.parent)
+                }
+                Files.copy(file, outputFileName, StandardCopyOption.REPLACE_EXISTING)
+                println("PHP: ${outputFileName.pathString}を作成しました。")
+            } else {
+                // ファイルが存在する場合はハッシュ値を比較、異なる場合はファイルを上書きする
+                val newOutputContent = Files.readString(file)
+                val oldOutputContent = Files.readString(outputFileName)
+                val newHash = Util.getHash(newOutputContent)
+                val oldHash = Util.getHash(oldOutputContent)
+                if (newHash == oldHash) {
+                    println("PHP: ${outputFileName.pathString}は変更がないため、上書きしません。")
+                } else {
+                    Files.copy(file, outputFileName, StandardCopyOption.REPLACE_EXISTING)
+                    println("PHP: ${outputFileName.pathString}を更新しました。")
+                }
             }
         }
     }

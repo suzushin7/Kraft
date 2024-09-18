@@ -22,3 +22,4 @@
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/share.css">
 <link rel="stylesheet" href="/css/toc.css">
+<link rel="stylesheet" href="/css/counter.css">

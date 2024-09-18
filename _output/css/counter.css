@@ -1,0 +1,88 @@
+.access-counter {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+.access-counter p {
+    margin: 0 0 10px;
+}
+
+.access-counter p:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.access-counter #totalViews {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.access-counter #startDate {
+    font-size: 14px;
+    color: #888888;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.access-counter ul#dailyViews {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    max-height: 240px;
+    overflow-y: auto;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.access-counter ul#dailyViews li {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #444444;
+}
+
+.access-counter ul#dailyViews li:last-child {
+    border-bottom: none;
+}
+
+.access-counter ul#dailyViews li:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.access-counter ul#dailyViews li:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.access-counter ul#dailyViews li span.date {
+    font-weight: bold;
+    width: 30%;
+    margin: 0 5px;
+}
+
+.access-counter ul#dailyViews li span.graph {
+    font-size: 16px;
+    font-weight: bold;
+    width: 30%;
+    color: #555555;
+    text-align: left;
+    margin: 0 5px;
+}
+
+.access-counter ul#dailyViews li span.pv {
+    color: #777777;
+    width: 40%;
+    text-align: right;
+    margin: 0 5px;
+}

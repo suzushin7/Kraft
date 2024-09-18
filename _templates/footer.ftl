@@ -5,3 +5,4 @@
 </footer>
 
 <script type="text/javascript" src="/js/back-to-top.js"></script>
+<script type="text/javascript" src="/js/counter.js"></script>

@@ -25,12 +25,14 @@
   <link rel="stylesheet" href="/css/search.css">
   <link rel="stylesheet" href="/css/share.css">
   <link rel="stylesheet" href="/css/toc.css">
+  <link rel="stylesheet" href="/css/counter.css">
   <link rel="canonical" href="https://suzushinlab.com/blog/">
   <title>ブログ記事一覧 | スズシンラボ</title>
  </head>
  <body>
   <div id="top" class="container">
-   <div class="bookmark-logo"><a href="/">スズシンラボ</a>
+   <div class="bookmark-logo">
+    <a href="/">スズシンラボ</a>
    </div>
    <nav class="global-menu">
     <ul>
@@ -50,7 +52,8 @@
       <li><a href="/tag/ページ/">#ページ</a> <a href="/tag/ブログ/">#ブログ</a></li>
      </ol>
     </nav>
-    <div class="search"><input type="text" class="tag-search" placeholder="タグを入力してください"> <button class="search-button">検索</button>
+    <div class="search">
+     <input type="text" class="tag-search" placeholder="タグを入力してください"> <button class="search-button">検索</button>
     </div>
     <script type="text/javascript">
   function redirectToTagPage() {
@@ -75,9 +78,12 @@
       <p>Published on: <time datetime="2024-09-06T18:00:00+09:00">2024-09-06T18:00:00+09:00</time></p>
       <p>Updated on: <time datetime="2024-09-14T11:55:00+09:00">2024-09-14T11:55:00+09:00</time></p>
      </header>
+     <div class="ad-description">
+      <p>※記事によっては、本文に広告のリンクが含まれることがあります。</p>
+     </div>
      <div class="content">
       <p>ここでは、ブログ記事一覧を表示しています。<br>
-       タグごとに記事を検索できるますので、気になるタグをクリックして記事を読んでみてください。</p>
+        タグごとに記事を検索できるますので、気になるタグをクリックして記事を読んでみてください。</p>
       <nav class="table-of-contents">
        <h2>目次</h2>
        <ul>
@@ -91,30 +97,28 @@
       </nav>
       <h2 id="section-0">最新記事</h2>
       <p>最新のブログ記事20件です。<br>
-       新着記事をぜひチェックしてみてください。</p>
-      <p><div class="latest-posts">
-<ul>
-<li><a href="/contact/">お問い合わせ</a></li>
-<li><a href="/privacy-policy/">プライバシーポリシーおよび利用規約</a></li>
-<li><a href="/about/">自己紹介</a></li>
-<li><a href="/blog/sample/">サンプルページ</a></li>
-<li><a href="/blog/">ブログ記事一覧</a></li>
-<li><a href="/project/">プロジェクト一覧</a></li>
-<li><a href="/404.html">404 Not Found</a></li>
-<li><a href="/">トップページ</a></li>
-</ul>
-</div>
-</p>
+        新着記事をぜひチェックしてみてください。</p>
+      <p></p>
+      <div class="latest-posts">
+       <ul>
+        <li><a href="/contact/">お問い合わせ</a></li>
+        <li><a href="/privacy-policy/">プライバシーポリシーおよび利用規約</a></li>
+        <li><a href="/about/">自己紹介</a></li>
+        <li><a href="/blog/sample/">サンプルページ</a></li>
+        <li><a href="/blog/">ブログ記事一覧</a></li>
+        <li><a href="/project/">プロジェクト一覧</a></li>
+        <li><a href="/404.html">404 Not Found</a></li>
+        <li><a href="/">トップページ</a></li>
+       </ul>
+      </div>
+      <p></p>
       <h2 id="section-1">タグ一覧</h2>
       <p>このブログ上に登録されているタグの一覧です。<br>
-       タグをクリックすると、そのタグに関連する記事一覧が表示されます。<br>
-       気になるタグをクリックして、記事を読んでみてください。</p>
-      <div class="search">
-  <input type="text" class="tag-search" placeholder="タグを入力してください">
-  <button class="search-button">検索</button>
-</div>
-
-<script type="text/javascript">
+        タグをクリックすると、そのタグに関連する記事一覧が表示されます。<br>
+        気になるタグをクリックして、記事を読んでみてください。</p>
+      <div class="search"><input type="text" class="tag-search" placeholder="タグを入力してください"> <button class="search-button">検索</button>
+      </div>
+      <script type="text/javascript">
   function redirectToTagPage() {
     const keyword = document.querySelector('.tag-search').value.trim().toLowerCase();
     if (keyword) {
@@ -130,20 +134,25 @@
     }
   });
 </script>
-
-      <div class="tags">
-<a href="/tag/ページ/" class="tag">#ページ (7)</a><a href="/tag/ブログ/" class="tag">#ブログ (2)</a><a href="/tag/お問い合わせ/" class="tag">#お問い合わせ (1)</a><a href="/tag/プライバシーポリシー/" class="tag">#プライバシーポリシー (1)</a><a href="/tag/自己紹介/" class="tag">#自己紹介 (1)</a><a href="/tag/サンプル/" class="tag">#サンプル (1)</a><a href="/tag/プロジェクト/" class="tag">#プロジェクト (1)</a><a href="/tag/404/" class="tag">#404 (1)</a><a href="/tag/ホーム/" class="tag">#ホーム (1)</a></div>
-
+      <div class="tags"><a href="/tag/ページ/" class="tag">#ページ (7)</a><a href="/tag/ブログ/" class="tag">#ブログ (2)</a><a href="/tag/お問い合わせ/" class="tag">#お問い合わせ (1)</a><a href="/tag/プライバシーポリシー/" class="tag">#プライバシーポリシー (1)</a><a href="/tag/自己紹介/" class="tag">#自己紹介 (1)</a><a href="/tag/サンプル/" class="tag">#サンプル (1)</a><a href="/tag/プロジェクト/" class="tag">#プロジェクト (1)</a><a href="/tag/404/" class="tag">#404 (1)</a><a href="/tag/ホーム/" class="tag">#ホーム (1)</a>
+      </div>
       <h2 id="section-2">関連タグ</h2>
       <p>この記事に付けられているタグの一覧です。<br>
-       タグをクリックすると、そのタグが付けられた記事の一覧を表示します。</p><a class="tag" href="/tag/ページ/">#ページ</a> <a class="tag" href="/tag/ブログ/">#ブログ</a>
+        タグをクリックすると、そのタグが付けられた記事の一覧を表示します。</p><a class="tag" href="/tag/ページ/">#ページ</a> <a class="tag" href="/tag/ブログ/">#ブログ</a>
       <h2 id="section-3">SNSシェアのお願い</h2>
       <p>もし、この記事を気に入ってもらえたら…。<br>
         SNSへシェアしていただけると嬉しいです。</p>
       <p>あなたのシェアは、非常に励みになります。<br>
         今後の更新に対するモチベーションにもつながります。</p>
       <p>ぜひともよろしくお願いします。</p>
-      <div class="share"><a href="https://twitter.com/share?text=%E8%A8%98%E4%BA%8B%E3%81%8C%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%E3%81%9C%E3%81%B2%E8%AA%AD%E3%82%93%E3%81%A7%E3%81%BF%E3%81%A6%E3%81%AD%E3%80%82%0A%0A%E3%83%96%E3%83%AD%E3%82%B0%E8%A8%98%E4%BA%8B%E4%B8%80%E8%A6%A7+%7C+%E3%82%B9%E3%82%BA%E3%82%B7%E3%83%B3%E3%83%A9%E3%83%9C&amp;url=https://suzushinlab.com/blog/" target="_blank" class="share-button twitter">Twitter</a> <a href="https://www.facebook.com/sharer/sharer.php?u=https://suzushinlab.com/blog/" target="_blank" class="share-button facebook">Facebook</a> <a href="http://b.hatena.ne.jp/entry/https://suzushinlab.com/blog/" target="_blank" class="share-button hatena">はてなブックマーク</a> <a href="https://www.linkedin.com/shareArticle?url=https://suzushinlab.com/blog/" target="_blank" class="share-button linkedin">LinkedIn</a> <a href="https://getpocket.com/edit?url=https://suzushinlab.com/blog/" target="_blank" class="share-button pocket">Pocket</a>
+      <div class="share">
+       <a href="https://twitter.com/share?text=%E8%A8%98%E4%BA%8B%E3%81%8C%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%E3%81%9C%E3%81%B2%E8%AA%AD%E3%82%93%E3%81%A7%E3%81%BF%E3%81%A6%E3%81%AD%E3%80%82%0A%0A%E3%83%96%E3%83%AD%E3%82%B0%E8%A8%98%E4%BA%8B%E4%B8%80%E8%A6%A7+%7C+%E3%82%B9%E3%82%BA%E3%82%B7%E3%83%B3%E3%83%A9%E3%83%9C&amp;url=https://suzushinlab.com/blog/" target="_blank" class="share-button twitter">Twitter</a> <a href="https://www.facebook.com/sharer/sharer.php?u=https://suzushinlab.com/blog/" target="_blank" class="share-button facebook">Facebook</a> <a href="http://b.hatena.ne.jp/entry/https://suzushinlab.com/blog/" target="_blank" class="share-button hatena">はてなブックマーク</a> <a href="https://www.linkedin.com/shareArticle?url=https://suzushinlab.com/blog/" target="_blank" class="share-button linkedin">LinkedIn</a> <a href="https://getpocket.com/edit?url=https://suzushinlab.com/blog/" target="_blank" class="share-button pocket">Pocket</a>
+      </div>
+      <div class="prev">
+       <p>Previous: <a href="/project/">プロジェクト一覧</a></p>
+      </div>
+      <div class="next">
+       <p>Next: <a href="/blog/sample/">サンプルページ</a></p>
       </div>
      </div>
      <div class="cta">
@@ -162,16 +171,24 @@
      <div class="cta">
       <h2 id="section-5">SNSをフォローしよう！</h2>
       <p>最新情報をいち早く知るために、私のSNSをフォローしてください！</p>
-      <div class="sns-links"><!-- Replace the URLs with your own SNS URLs --> <a href="https://twitter.com/suzushin7" target="_blank" class="twitter-link">X(Twitter)</a> <a href="https://www.instagram.com/suzushin7.lifechallenge" target="_blank" class="instagram-link">Instagram</a> <a href="https://www.tiktok.com/@suzushin7.lifechallenge" target="_blank" class="tiktok-link">TikTok</a> <a href="https://www.youtube.com/@suzushin7.lifechallenge" target="_blank" class="youtube-link">YouTube</a> <a href="https://github.com/suzushin7" target="_blank" class="github-link">GitHub</a>
+      <div class="sns-links">
+       <!-- Replace the URLs with your own SNS URLs --> <a href="https://twitter.com/suzushin7" target="_blank" class="twitter-link">X(Twitter)</a> <a href="https://www.instagram.com/suzushin7.lifechallenge" target="_blank" class="instagram-link">Instagram</a> <a href="https://www.tiktok.com/@suzushin7.lifechallenge" target="_blank" class="tiktok-link">TikTok</a> <a href="https://www.youtube.com/@suzushin7.lifechallenge" target="_blank" class="youtube-link">YouTube</a> <a href="https://github.com/suzushin7" target="_blank" class="github-link">GitHub</a>
       </div>
      </div><a href="#top" class="back-to-top">TOPに戻る</a>
     </article>
+    <div class="access-counter">
+     <p>アクセスカウンター</p>
+     <p id="totalViews">Total:</p>
+     <ul id="dailyViews"></ul>
+     <p id="startDate">Start Date:</p>
+    </div>
    </main>
    <footer>
     <p>© 2,024 スズシンラボ. All rights reserved.</p><!-- Please do not remove the following paragraph and link. -->
     <p>This site is created by <a href="https://github.com/suzushin7/Kraft">Kraft</a> which developed by <a href="https://suzushinlab.com/">Shingo Suzuki</a>.</p>
    </footer>
    <script type="text/javascript" src="/js/back-to-top.js"></script>
+   <script type="text/javascript" src="/js/counter.js"></script>
   </div>
  </body>
 </html>
