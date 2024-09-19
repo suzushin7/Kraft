@@ -144,31 +144,6 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
                 htmlContentWithToc = htmlContentWithToc.replace("<p>{{ search }}</p>", searchOutput.toString())
             }
 
-            // slugが/で終わる場合はindex.htmlを追加
-            val path = if (article.metadata.slug.endsWith("/")) {
-                article.metadata.slug + "index.html"
-            } else {
-                article.metadata.slug
-            }
-
-            // 出力先のファイル
-            val outputFile = File("${outputDir}${path}")
-
-            // ファイルが存在する場合は、ハッシュ値を比較して更新が必要か判定
-            if (outputFile.exists()) {
-                val outputFileContent = outputFile.readText()
-                // 文字列の長さを比較。同じ場合はハッシュ値を比較
-                if (outputFileContent.length == htmlContentWithToc.length) {
-                    // ハッシュ値を比較
-                    val prevHash = outputFileContent.hashCode()
-                    val currentHash = htmlContentWithToc.hashCode()
-                    if (currentHash == prevHash) {
-                        println("HTML: ${outputFile.path}は変更がないため、上書きしません。")
-                        continue
-                    }
-                }
-            }
-
             // 前後の記事へのリンクを作成
             val prevArticle = allArticles.getOrNull(allArticles.indexOf(article) + 1)
             val nextArticle = allArticles.getOrNull(allArticles.indexOf(article) - 1)
@@ -196,6 +171,31 @@ class HTMLGenerator(private val domain: String, private val siteName: String, pr
                 document.select("div.next").first()?.appendChild(nextLinkParagraph)
             }
             htmlContentWithToc = document.html()
+
+            // slugが/で終わる場合はindex.htmlを追加
+            val path = if (article.metadata.slug.endsWith("/")) {
+                article.metadata.slug + "index.html"
+            } else {
+                article.metadata.slug
+            }
+
+            // 出力先のファイル
+            val outputFile = File("${outputDir}${path}")
+
+            // ファイルが存在する場合は、ハッシュ値を比較して更新が必要か判定
+            if (outputFile.exists()) {
+                val outputFileContent = outputFile.readText()
+                // 文字列の長さを比較。同じ場合はハッシュ値を比較
+                if (outputFileContent.length == htmlContentWithToc.length) {
+                    // ハッシュ値を比較
+                    val prevHash = outputFileContent.hashCode()
+                    val currentHash = htmlContentWithToc.hashCode()
+                    if (currentHash == prevHash) {
+                        println("HTML: ${outputFile.path}は変更がないため、上書きしません。")
+                        continue
+                    }
+                }
+            }
 
             // 出力先のファイルが存在しないか、更新が必要な場合はファイルを書き込む
             outputFile.apply {
